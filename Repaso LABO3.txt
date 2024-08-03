@@ -156,6 +156,8 @@ ANOTACIONES:Model: Representa la lógica del negocio, pero no necesariamente se 
 DTOs
 Funcion:DTO (Data Transfer Object): Es un objeto simple que transporta datos entre capas o aplicaciones. No contiene lógica de negocio ni se mapea directamente a la base de datos.
 
+IMPORTANTE: AL MOMENTO DE PASAR LAS CLAVES DE LOS JSON POR POSTMAN, LAS CLAVES DE DEBEN LLAMAR IGUAL QUE LOS ATRIBUTOS DE LOS DTO  
+
 ANOTACIONES:
 @Data: genera getters y setters,constructores con y sin param
 @NoArgsConstructor: ctro sin param
@@ -225,9 +227,6 @@ Optional<AlgoEntity> : Puede devolver o no algo.
 12-Completar Service:
 
 
-
-
-
 /
 5-Cambiar contenido desde los SERVICES
 1ro: Interfaces
@@ -244,3 +243,8 @@ Ejemplo Guess NUMBER
 /guess-numbers/users/{id}/matches/{id}
 
 /
+---------------------------------------------------------------------------------------------------------
+IMPORTANTE 
+CONTROLLER PEGA A SERVICE(VALIDAR)
+SERVICE PEGA REPOSITORIE
+REPOSITORIE PEGA A DB
