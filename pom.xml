@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>lab3.JonerClaudio</groupId>
-	<artifactId>scafolding</artifactId>
+	<artifactId>guess-a-number</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>scafolding</name>
+	<name>guess-a-number</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

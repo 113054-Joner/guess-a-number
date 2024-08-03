@@ -81,7 +81,7 @@ private DummyService service;
 
 
 
--Anotaciones:
+ANOTACIONES:
 @RestController: indica que es un rest controller
 @RequestMapping("/dummy"): sirver la url 
 @Autowired : permite la inyeccion de dependencias
@@ -114,9 +114,9 @@ implements  AlgoService
     private DummyRepository dummyRepository;
 	
 
-Anotaciones:
+ANOTACIONES:
 @Service: indicar service
-
+@Qualifier("BeanInyectar"): sirve para indicar qu BEAN se debe inyectar
 
 ----------------------------------------------------------
 Repository
@@ -127,17 +127,40 @@ Puede implemetar todos los metodos de JPAReposirty
 
 JPAReposirty<AlgoEntity,Tipo de Dato>
 
-Anotaciones:
+ANOTACONES:
 @Repository: indicar repository, da acceso a BD
 
 ---------------------------------------------------------
 Entity
+Funcion:Representa una tabla en la base de datos. Está anotada con @Entity y es gestionada por frameworks como JPA/Hibernate.
 
-Anotaciones:
+ANOTACONES:
 @Entity: indicar entity, 
 @Id: tipo id
 @GeneratedValue(strategy = GenerationType.IDENTITY): valor auto incremental
 @Column(name = "id",nullable = false): nombre columna id, no acepta nulos 
+@Table(name = "marchs"): da nombre a la tabla
+@JoinColumn(name = "user_id"): indica que columna hace join
+@ManyToOne: muchos a 1 , 
+@OneToOne: 1 a 1
+@OneToMany: 1 a mucho
+
+@Enumerated(EnumType.STRING): se usa para enumeradores 
+---------------------------------------------------------
+Model
+Funcion
+
+ANOTACIONES:Model: Representa la lógica del negocio, pero no necesariamente se mapea a una tabla. Es más general y puede contener datos de negocio.
+
+---------------------------------------------------------
+DTOs
+Funcion:DTO (Data Transfer Object): Es un objeto simple que transporta datos entre capas o aplicaciones. No contiene lógica de negocio ni se mapea directamente a la base de datos.
+
+ANOTACIONES:
+@Data: genera getters y setters,constructores con y sin param
+@NoArgsConstructor: ctro sin param
+@JsonProperty("nombre Clave de Json"):sirve para pasar el nombre de la clave del JSON(Ver Diagram de Flujo),Ej: userName->reglas de Java, JSON->usernamer(ACA USAR NOTACION)
+@Email:indicar email
 
 --------------------------------------------------------------------------------------
 PASO 2
@@ -161,3 +184,63 @@ PASO 2
 		
 Biblioteca MAVEN:
 https://mvnrepository.com/
+
+----------------------------------------------------------------------------------------
+PROYECTO CON INITIAL SCAFOLDING 
+
+PASOS:
+
+1-Crear Repo> Repository template(initial Scafoldin)
+2-Cambiar en POM:
+	<artifactId>guess-a-number</artifactId>
+	<name>guess-a-number</name>
+El nombre tiene que ser el mismo del repositorio(Primera CARPETA)
+
+3-Resources>Aplication.Properties>Cambiar spring.application.name=Valor del Punto Anterior
+4-Crear 
+
+
+5-Extraer INFO de diagrama de flujo:
+-URLS
+-DTOS: Json
+-El rombo ver que pasa,GET POST PUT DELETE
+
+7-Modificar DTOs
+Campos Dtos se ven en el JSON
+
+8-Completo Interfaz del Service e implemento metodos (metodos en los rombos)
+
+9-Voy a Controller: 
+ Traigo del service los metods que veo en el punto 5
+ Mappeo un Dto  modelMapper.map(Model,Dto.Class)
+ retorno ResponseEntity.ok(objetoDto)
+
+10-En entiyty completar tiene los mismos campos que un DTOs
+Poner el nombre de columna con _ , Ej:user_name 
+ 
+ 
+11-Repository hacer las consultas que hagan falta  
+Optional<AlgoEntity> : Puede devolver o no algo.
+
+12-Completar Service:
+
+
+
+
+
+/
+5-Cambiar contenido desde los SERVICES
+1ro: Interfaces
+2do: Implmentaciones 
+
+6-Cambiar contenido desde los REPOSITORIES
+Cambiar por los Entity
+
+7-Cambiar los CONTROLLERS
+Ver las URLS de los diagramas de FLUJO
+Ejemplo Guess NUMBER
+/guess-numbers/users
+/guess-numbers/users/{id}/matches
+/guess-numbers/users/{id}/matches/{id}
+
+/
