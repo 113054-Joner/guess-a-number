@@ -38,6 +38,10 @@ Lombok
 H2
 Web 
 JpA
+spring-boot-starter-validation
+springdoc-openapi-starter-webmvc-ui
+modelmapper
+
 
 Packaging JAR
 Java 17
@@ -102,6 +106,10 @@ public class OwnerController {
 @PutMapping(""):update
 @DeleteMapping(""): delete
 @PathVariable: variable que toma por el path 
+@Valid: el objete tiene que estar validado(Model)
+@ControllerAdvice: verica la ejecucion de los controladores
+@ExceptionHandler: maneja una excepcion
+@Builder: permite generar automáticamente el código requerido para que su clase sea instanciable, implemeta patron builder
 -----------------------------------------------------------
 Service
 Funcion:Une controller con Repository
@@ -151,10 +159,20 @@ Model
 Funcion
 
 ANOTACIONES:Model: Representa la lógica del negocio, pero no necesariamente se mapea a una tabla. Es más general y puede contener datos de negocio.
+@NotNull(validacion):no acepta nulos
+@Email: formato email
+@Size:el tamño
+@Min: cant caract min
+@Max: cant caract max
 
+
+Jakarta:https://beanvalidation.org/
 ---------------------------------------------------------
 DTOs
 Funcion:DTO (Data Transfer Object): Es un objeto simple que transporta datos entre capas o aplicaciones. No contiene lógica de negocio ni se mapea directamente a la base de datos.
+
+Exception Handler
+Copiar carpeta Common sirve para manejar excepciones 
 
 IMPORTANTE: AL MOMENTO DE PASAR LAS CLAVES DE LOS JSON POR POSTMAN, LAS CLAVES DE DEBEN LLAMAR IGUAL QUE LOS ATRIBUTOS DE LOS DTO  
 
@@ -163,7 +181,14 @@ ANOTACIONES:
 @NoArgsConstructor: ctro sin param
 @JsonProperty("nombre Clave de Json"):sirve para pasar el nombre de la clave del JSON(Ver Diagram de Flujo),Ej: userName->reglas de Java, JSON->usernamer(ACA USAR NOTACION)
 @Email:indicar email
+@Builder:
+---------------------------------------------------------
+VALIDACIONES 
 
+1)Ver y copia  passwordContraintVlidator(tiene metodo que devuelve true o false) @validPassword(Crea la anotacoin)
+
+
+Libreria passay : https://www.passay.org/
 --------------------------------------------------------------------------------------
 PASO 2
 1-Crear package Config
@@ -248,3 +273,111 @@ IMPORTANTE
 CONTROLLER PEGA A SERVICE(VALIDAR)
 SERVICE PEGA REPOSITORIE
 REPOSITORIE PEGA A DB
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------TESTING---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TEST UNITARIO(pequeños bloques de codigo)-> achicar metodos 
+
+JUnit5
+
+ANOTACIONES:
+@TEST: Indic que es un test 
+@displayName: le da nombre
+@BeforeEach/@AfterEach: indica hacer algo antes/ despues de que corra un metodo.Es para dar un CONTEXTO
+@BeforeAll/@AfterAll: antes / despues de correr la clase enterar.Es para dar un CONTEXTO comun a todos los test
+@Tag: etiqueta prueba y las agrupa 
+@Disable: dsabilita una prueba
+
+Assert
+assertEqueals/assertNotEqueals: valor igual/ no igual
+assertArrayEquals: dos array son iguales
+assertNull/assertNotNull: si un obj es nulo/no es nulo
+assertSame/assertNotSame: si 2 variables hace referencia al mismo objeto o no 
+assertTrue/assertFalse: validar si una condicion es true o false
+assertAll: agrupa assertions en uno solo 
+asserIterableEqueals: verifica que 2 iterables tenga los mismo elemento en el mismo orden
+assertLinesMatch: 2 listas de string sean iguales, Se puede usar expresiones regulares
+assertThrows: verifica si dispara una excepcion especifica
+assertTimeout: verifica si la ejecion se hizo antes de cierto tiempo 
+fail: hace que el tes falle y dispare AssertionFailedError
+
+
+MOCKITO (Crea objetos simulados o dependencias)
+
+2 objetos:
+
+MOCKS-> Es objeto/interfaz simulado en lugar de un objeto Real -> se le indica como debe comportarse  -> Se mezcla con los asserts
+
+mock(objeto simulado) 
+
+Anotacion:
+@Mock
+@InjectMoks: inyecta mock y spy creados por las anotaciones,valido para instancias de clases no func para objetos creados por new
+
+Metodo:
+mock()
+
+SPY-> Es objeto/interfaz simulado en lugar de un objeto Real-> mantiene el comportamiento del objeto real -> se puede configurar
+Anotacion:
+@Spy
+@InjectMoks: inyecta mock y spy creados por las anotaciones,valido para instancias de clases no func para objetos creados por new
+
+Metodo:
+spy()
+
+Puede sobrescribir el metodo
+
+Metodos Mockito:
+whe(): configurar el comportamiento de obj simulado o spy cuando se llama a un metodo en particular 
+thenReturn(): configurar el retorno de obj simulado o spy
+thentThrow():configurar excepcion que se lanzara cuando se llama a un metodo en mock o spy
+doNothing(): configur mock o spy para que no haga nada cuando se llama un metodo en particular,pasas de largo en el codigo
+verify(): comprobar  si un metodo de un mock o spy ha sido llamado durante la ejecucion de una prueba,sirve Para metodos Void->El void no returna nada entonces no puedo usar un assert, con esto
+         puedo ver si se llama al Void
+
+Geraar test:
+click der>genera>test> selec metodos 
+
+----------------------------------------------------------------------------
+Partes de los test
+// given Contexto Se crea objetos de entrada , salida
+        //Entrada
+		//Salida
+// when
+Se llama al metodo real 
+given dado
+// then
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------EJEMPLOS--------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------TESTING---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JPAREPOSITORY
+Ver Proyecto PiedraPapelTijer
+
+TEORIA TESTJAVA
+completar
+
